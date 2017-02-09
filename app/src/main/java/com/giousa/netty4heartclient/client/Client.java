@@ -29,6 +29,11 @@ public class Client {
     private NioEventLoopGroup workGroup = new NioEventLoopGroup(4);
     private Channel channel;
     private Bootstrap bootstrap;
+    private String hostIp;
+
+    public Client(String hostIp) {
+        this.hostIp = hostIp;
+    }
 
     public void sendData(String trim) throws Exception {
         if (channel != null && channel.isActive()) {
@@ -66,7 +71,7 @@ public class Client {
             return;
         }
 
-        ChannelFuture future = bootstrap.connect("192.168.0.108", 12345);
+        ChannelFuture future = bootstrap.connect(hostIp, 12345);
 
         future.addListener(new ChannelFutureListener() {
             public void operationComplete(ChannelFuture futureListener) throws Exception {

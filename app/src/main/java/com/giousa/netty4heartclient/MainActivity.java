@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
 
     private EditText mMsg;
     private Client mClient;
+    private String hostIp = "192.168.0.108";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         mMsg = (EditText) findViewById(R.id.et_msg);
         Button send = (Button) findViewById(R.id.btn_send);
 
-        mClient = new Client();
+        mClient = new Client(hostIp);
         mClient.start();
 
         send.setOnClickListener(new View.OnClickListener() {
